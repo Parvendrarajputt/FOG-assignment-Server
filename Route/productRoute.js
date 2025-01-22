@@ -22,7 +22,7 @@ router.get("/products/price", getProductsByPrice);
 router.get('/products/price/sort', getSortedProductsByLowtoHighPrice);
 // http://localhost:8000/products/price/sort?sort=high-to-low
 
-router.get('/products/name/sort', getSortedProductsByAtoZBrandName); 4
+router.get('/products/name/sort', getSortedProductsByAtoZBrandName);
 // http://localhost:8000/products/name/sort?order=A-Z
 
 
