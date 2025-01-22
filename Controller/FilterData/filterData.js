@@ -1,5 +1,4 @@
-import productData from "../../ProductData/data.js"
-
+import productData from "../../ProductData/data.js";
 
 // price 
 export const getProductsByPrice = (req, res) => {
@@ -15,14 +14,16 @@ export const getProductsByPrice = (req, res) => {
         return res.status(400).json({ error: "Invalid price format" });
     }
 
-    const filteredProducts = productData.filter(product =>
+    // Create a copy of the product data to avoid direct manipulation
+    const productDataCopy = [...productData];
+
+    // Filter the copied data based on maxPrice
+    const filteredProducts = productDataCopy.filter(product =>
         parseFloat(product.price.replace(/[^\d.-]/g, '')) <= maxPriceNum
     );
 
     res.json(filteredProducts);
 };
-
-
 
 // Brand name 
 export const getProductsByBrandName = (req, res) => {
@@ -32,8 +33,11 @@ export const getProductsByBrandName = (req, res) => {
         return res.status(400).json({ error: "Brand name is required" });
     }
 
-    // Filter by brand name
-    const filteredProducts = productData.filter(product =>
+    // Create a copy of the product data to avoid direct manipulation
+    const productDataCopy = [...productData];
+
+    // Filter the copied data by brand name
+    const filteredProducts = productDataCopy.filter(product =>
         product.brandName.toLowerCase().includes(brandName.toLowerCase())
     );
 
@@ -48,7 +52,11 @@ export const getProductsByBrandCategory = (req, res) => {
         return res.status(400).json({ error: "Brand category is required" });
     }
 
-    const filteredProducts = productData.filter(product =>
+    // Create a copy of the product data to avoid direct manipulation
+    const productDataCopy = [...productData];
+
+    // Filter the copied data by category
+    const filteredProducts = productDataCopy.filter(product =>
         product.category.toLowerCase() === brandCategory.toLowerCase()
     );
 

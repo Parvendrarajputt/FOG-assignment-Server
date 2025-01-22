@@ -1,4 +1,4 @@
-import productData from "../../ProductData/data.js"
+import productData from "../../ProductData/data.js";
 
 export const getSortedProductsByLowtoHighPrice = (req, res) => {
     const { sort } = req.query;  // Get sorting parameter: 'high-to-low' or 'low-to-high'
@@ -8,8 +8,11 @@ export const getSortedProductsByLowtoHighPrice = (req, res) => {
         return res.status(400).json({ error: "Invalid sort parameter. Use 'high-to-low' or 'low-to-high'" });
     }
 
+    // Create a copy of the product data to avoid direct manipulation
+    const productDataCopy = [...productData];
+
     // Sort products based on price
-    const sortedProducts = productData.sort((a, b) => {
+    const sortedProducts = productDataCopy.sort((a, b) => {
         const priceA = parseFloat(a.price.replace(/[^\d.-]/g, ''));
         const priceB = parseFloat(b.price.replace(/[^\d.-]/g, ''));
 
@@ -32,10 +35,13 @@ export const getSortedProductsByAtoZBrandName = (req, res) => {
 
     let sortedProducts;
 
+    // Create a copy of the product data to avoid direct manipulation
+    const productDataCopy = [...productData];
+
     if (order === 'A-Z') {
-        sortedProducts = productData.sort((a, b) => a.brandName.localeCompare(b.brandName));
+        sortedProducts = productDataCopy.sort((a, b) => a.brandName.localeCompare(b.brandName));
     } else if (order === 'Z-A') {
-        sortedProducts = productData.sort((a, b) => b.brandName.localeCompare(a.brandName));
+        sortedProducts = productDataCopy.sort((a, b) => b.brandName.localeCompare(a.brandName));
     } else {
         return res.status(400).json({ error: "Invalid order. Use 'A-Z' or 'Z-A'" });
     }

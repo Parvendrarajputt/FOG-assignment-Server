@@ -1,13 +1,19 @@
 import express from 'express';
-import router from './Route/productRoute.js';  // Ensure the correct case and extension
-const app = express();
-const PORT = 8000;
+import router from './Route/productRoute.js';
+import cors from 'cors';
+import dotenv from 'dotenv';
 
-app.use(express.json());  // Middleware to parse JSON
-app.use(router);  // Register the router
+
+dotenv.config();
+const app = express();
+const PORT = process.env.PORT || 8000;
+app.use(cors());
+
+app.use(express.json());
+app.use(router);
 
 app.get("/", (req, res) => {
-  res.send("Server is running on port 8000");
+  res.send(`Server is running on port ${PORT}`);
 });
 
 app.listen(PORT, () => {
