@@ -1,6 +1,5 @@
 import productData from "../../ProductData/data.js";
 
-
 export const getProductsByPrice = (req, res) => {
     const { maxPrice } = req.query; 
 

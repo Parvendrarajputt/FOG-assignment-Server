@@ -1,5 +1,5 @@
 import express from 'express';
-import { getProductsByBrandCategory, getProductsByBrandName, getProductsByPrice } from '../Controller/FIlterData/filterData.js';
+import { getProductsByBrandCategory, getProductsByBrandName, getProductsByPrice } from '../Controller/FilterData/filterData.js';
 import { getProducts, helloWorld } from '../Controller/GetAllData/getAllData.js';
 import { getSortedProductsByAtoZBrandName, getSortedProductsByLowtoHighPrice } from '../Controller/SortedData/sortedData.js';
 
